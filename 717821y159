@@ -1,0 +1,54 @@
+import java.util.Scanner;
+class FlightReservation {
+    private String flightNumber;
+    private String destination;
+    private String date;
+    public FlightReservation(String flightNumber, String destination, String date) {
+        this.flightNumber = flightNumber;
+        this.destination = destination;
+        this.date = date;
+    }
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+    public String getDestination() {
+        return destination;
+    }
+    public String getDate() {
+        return date;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to Flight Reservation System!");
+        FlightReservation[] reservations = {
+                new FlightReservation("ABC123", "New York", "2023-06-20"),
+                new FlightReservation("DEF456", "London", "2023-07-05"),
+                new FlightReservation("GHI789", "Paris", "2023-07-15")
+        };
+        System.out.println("Available flights:");
+        for (FlightReservation reservation : reservations) {
+            System.out.println("Flight: " + reservation.getFlightNumber() +
+                    ", Destination: " + reservation.getDestination() +
+                    ", Date: " + reservation.getDate());
+        }
+        System.out.print("Enter the flight number you want to reserve: ");
+        String selectedFlightNumber = scanner.nextLine();
+        FlightReservation selectedReservation = null;
+        for (FlightReservation reservation : reservations) {
+            if (reservation.getFlightNumber().equals(selectedFlightNumber)) {
+                selectedReservation = reservation;
+                break;
+            }
+        }
+        if (selectedReservation != null) {
+            System.out.println("Flight reserved successfully!");
+            System.out.println("Flight: " + selectedReservation.getFlightNumber() +
+                    ", Destination: " + selectedReservation.getDestination() +
+                    ", Date: " + selectedReservation.getDate());
+        } else {
+            System.out.println("Invalid flight number. Reservation failed.");
+        }
+    }
+}
